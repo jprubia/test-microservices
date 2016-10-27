@@ -20,7 +20,8 @@ test:
   post:
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/
     - find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
-    - docker build -t jprubia/ms-blog-auth-server               microservices/support/auth-server/build
+#    - docker build -t jprubia/ms-blog-auth-server               microservices/support/auth-server/build
+    - docker build -t magnuslarsson/ms-blog-auth-server               microservices/support/auth-server
     - docker build -t jprubia/ms-blog-config-server             microservices/support/config-server/build
     - docker build -t jprubia/ms-blog-discovery-server          microservices/support/discovery-server/build
     - docker build -t jprubia/ms-blog-edge-server               microservices/support/edge-server/build
