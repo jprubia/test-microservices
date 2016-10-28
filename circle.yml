@@ -20,17 +20,17 @@ test:
   post:
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/
     - find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
-#    - docker build -t jprubia/ms-blog-auth-server               microservices/support/auth-server/build
-    - docker build -t magnuslarsson/ms-blog-auth-server               microservices/support/auth-server
-    - docker build -t magnuslarsson/ms-blog-config-server             microservices/support/config-server
-    - docker build -t magnuslarsson/ms-blog-discovery-server          microservices/support/discovery-server
-    - docker build -t magnuslarsson/ms-blog-edge-server               microservices/support/edge-server
-    - docker build -t magnuslarsson/ms-blog-monitor-dashboard         microservices/support/monitor-dashboard
-    - docker build -t magnuslarsson/ms-blog-turbine                   microservices/support/turbine
-    - docker build -t magnuslarsson/ms-blog-product-service           microservices/core/product-service
-    - docker build -t magnuslarsson/ms-blog-recommendation-service    microservices/core/recommendation-service
-    - docker build -t magnuslarsson/ms-blog-review-service            microservices/core/review-service
-    - docker build -t magnuslarsson/ms-blog-product-composite-service microservices/composite/product-composite-service
+#    - docker build -t magnuslarsson/ms-blog-auth-server               microservices/support/auth-server/build
+    - docker build -t jprubia/ms-blog-auth-server               microservices/support/auth-server
+    - docker build -t jprubia/ms-blog-config-server             microservices/support/config-server
+    - docker build -t jprubia/ms-blog-discovery-server          microservices/support/discovery-server
+    - docker build -t jprubia/ms-blog-edge-server               microservices/support/edge-server
+    - docker build -t jprubia/ms-blog-monitor-dashboard         microservices/support/monitor-dashboard
+    - docker build -t jprubia/ms-blog-turbine                   microservices/support/turbine
+    - docker build -t jprubia/ms-blog-product-service           microservices/core/product-service
+    - docker build -t jprubia/ms-blog-recommendation-service    microservices/core/recommendation-service
+    - docker build -t jprubia/ms-blog-review-service            microservices/core/review-service
+    - docker build -t jprubia/ms-blog-product-composite-service microservices/composite/product-composite-service
     - docker images
 #    - host=localhost ./test-all.sh
 
@@ -42,39 +42,39 @@ deployment:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
 
       # Push latest
-      - docker push magnuslarsson/ms-blog-auth-server
-      - docker push magnuslarsson/ms-blog-config-server
-      - docker push magnuslarsson/ms-blog-discovery-server
-      - docker push magnuslarsson/ms-blog-edge-server
-      - docker push magnuslarsson/ms-blog-monitor-dashboard
-      - docker push magnuslarsson/ms-blog-turbine
+      - docker push jprubia/ms-blog-auth-server
+      - docker push jprubia/ms-blog-config-server
+      - docker push jprubia/ms-blog-discovery-server
+      - docker push jprubia/ms-blog-edge-server
+      - docker push jprubia/ms-blog-monitor-dashboard
+      - docker push jprubia/ms-blog-turbine
 
-      - docker push magnuslarsson/ms-blog-product-service
-      - docker push magnuslarsson/ms-blog-recommendation-service
-      - docker push magnuslarsson/ms-blog-review-service
-      - docker push magnuslarsson/ms-blog-product-composite-service
+      - docker push jprubia/ms-blog-product-service
+      - docker push jprubia/ms-blog-recommendation-service
+      - docker push jprubia/ms-blog-review-service
+      - docker push jprubia/ms-blog-product-composite-service
 
       # Create buils tag "master.$CIRCLE_BUILD_NUM" and push it
-      - docker tag magnuslarsson/ms-blog-auth-server               magnuslarsson/ms-blog-auth-server:master.$CIRCLE_BUILD_NUM
-      - docker tag magnuslarsson/ms-blog-config-server             magnuslarsson/ms-blog-config-server:master.$CIRCLE_BUILD_NUM
-      - docker tag magnuslarsson/ms-blog-discovery-server          magnuslarsson/ms-blog-discovery-server:master.$CIRCLE_BUILD_NUM
-      - docker tag magnuslarsson/ms-blog-edge-server               magnuslarsson/ms-blog-edge-server:master.$CIRCLE_BUILD_NUM
-      - docker tag magnuslarsson/ms-blog-monitor-dashboard         magnuslarsson/ms-blog-monitor-dashboard:master.$CIRCLE_BUILD_NUM
-      - docker tag magnuslarsson/ms-blog-turbine                   magnuslarsson/ms-blog-turbine:master.$CIRCLE_BUILD_NUM
+      - docker tag jprubia/ms-blog-auth-server               jprubia/ms-blog-auth-server:master.$CIRCLE_BUILD_NUM
+      - docker tag jprubia/ms-blog-config-server             jprubia/ms-blog-config-server:master.$CIRCLE_BUILD_NUM
+      - docker tag jprubia/ms-blog-discovery-server          jprubia/ms-blog-discovery-server:master.$CIRCLE_BUILD_NUM
+      - docker tag jprubia/ms-blog-edge-server               jprubia/ms-blog-edge-server:master.$CIRCLE_BUILD_NUM
+      - docker tag jprubia/ms-blog-monitor-dashboard         jprubia/ms-blog-monitor-dashboard:master.$CIRCLE_BUILD_NUM
+      - docker tag jprubia/ms-blog-turbine                   jprubia/ms-blog-turbine:master.$CIRCLE_BUILD_NUM
 
-      - docker tag magnuslarsson/ms-blog-product-service           magnuslarsson/ms-blog-product-service:master.$CIRCLE_BUILD_NUM
-      - docker tag magnuslarsson/ms-blog-recommendation-service    magnuslarsson/ms-blog-recommendation-service:master.$CIRCLE_BUILD_NUM
-      - docker tag magnuslarsson/ms-blog-review-service            magnuslarsson/ms-blog-review-service:master.$CIRCLE_BUILD_NUM
-      - docker tag magnuslarsson/ms-blog-product-composite-service magnuslarsson/ms-blog-product-composite-service:master.$CIRCLE_BUILD_NUM
+      - docker tag jprubia/ms-blog-product-service           jprubia/ms-blog-product-service:master.$CIRCLE_BUILD_NUM
+      - docker tag jprubia/ms-blog-recommendation-service    jprubia/ms-blog-recommendation-service:master.$CIRCLE_BUILD_NUM
+      - docker tag jprubia/ms-blog-review-service            jprubia/ms-blog-review-service:master.$CIRCLE_BUILD_NUM
+      - docker tag jprubia/ms-blog-product-composite-service jprubia/ms-blog-product-composite-service:master.$CIRCLE_BUILD_NUM
 
-      - docker push magnuslarsson/ms-blog-auth-server:master.$CIRCLE_BUILD_NUM
-      - docker push magnuslarsson/ms-blog-config-server:master.$CIRCLE_BUILD_NUM
-      - docker push magnuslarsson/ms-blog-discovery-server:master.$CIRCLE_BUILD_NUM
-      - docker push magnuslarsson/ms-blog-edge-server:master.$CIRCLE_BUILD_NUM
-      - docker push magnuslarsson/ms-blog-monitor-dashboard:master.$CIRCLE_BUILD_NUM
-      - docker push magnuslarsson/ms-blog-turbine:master.$CIRCLE_BUILD_NUM
+      - docker push jprubia/ms-blog-auth-server:master.$CIRCLE_BUILD_NUM
+      - docker push jprubia/ms-blog-config-server:master.$CIRCLE_BUILD_NUM
+      - docker push jprubia/ms-blog-discovery-server:master.$CIRCLE_BUILD_NUM
+      - docker push jprubia/ms-blog-edge-server:master.$CIRCLE_BUILD_NUM
+      - docker push jprubia/ms-blog-monitor-dashboard:master.$CIRCLE_BUILD_NUM
+      - docker push jprubia/ms-blog-turbine:master.$CIRCLE_BUILD_NUM
 
-      - docker push magnuslarsson/ms-blog-product-service:master.$CIRCLE_BUILD_NUM
-      - docker push magnuslarsson/ms-blog-recommendation-service:master.$CIRCLE_BUILD_NUM
-      - docker push magnuslarsson/ms-blog-review-service:master.$CIRCLE_BUILD_NUM
-      - docker push magnuslarsson/ms-blog-product-composite-service:master.$CIRCLE_BUILD_NUM
+      - docker push jprubia/ms-blog-product-service:master.$CIRCLE_BUILD_NUM
+      - docker push jprubia/ms-blog-recommendation-service:master.$CIRCLE_BUILD_NUM
+      - docker push jprubia/ms-blog-review-service:master.$CIRCLE_BUILD_NUM
+      - docker push jprubia/ms-blog-product-composite-service:master.$CIRCLE_BUILD_NUM
